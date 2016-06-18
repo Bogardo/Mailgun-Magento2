@@ -1,6 +1,10 @@
 # Magento 2 Mailgun Module
 
-Send Magento's transactional e-mails with the Mailgun API service.
+[![Latest Stable Version](https://poser.pugx.org/bogardo/mailgun-magento2/v/stable?format=flat-square)](https://packagist.org/packages/bogardo/mailgun-magento2)
+[![Monthly Downloads](https://poser.pugx.org/bogardo/mailgun-magento2/d/monthly?format=flat-square)](https://packagist.org/packages/bogardo/mailgun-magento2)
+[![License](https://poser.pugx.org/bogardo/mailgun-magento2/license?format=flat-square)](https://packagist.org/packages/bogardo/mailgun-magento2)
+
+Send Magento's transactional e-mails with the [Mailgun API](http://www.mailgun.com/).
 
 ### Installation
 
@@ -25,6 +29,10 @@ All transactional email that are send by your Magento application are now send u
 You can access the mail logs in your [Mailgun control panel](https://mailgun.com/app/logs).
 
 ## Changelog
+
+#### 0.1.2
+- Add correct license
+- Add badges to readme
 
 #### 0.1.1
 - Update README
