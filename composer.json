@@ -1,0 +1,39 @@
+{
+    "name": "bogardo/mailgun-magento2",
+    "description": "Send Magento's transactional emails with the Mailgun API",
+    "type": "magento2-module",
+    "version": "0.1.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Bogardo",
+            "email": "chris@bogardo.com",
+            "homepage": "http://bogardo.com/",
+        }
+    ],
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+        "magento/magento-composer-installer": "*",
+        "mailgun/mailgun-php": "~2.0",
+        "php-http/guzzle6-adapter": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bogardo\\Mailgun\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Bogardo/Mailgun"
+            ]
+        ]
+    }
+}

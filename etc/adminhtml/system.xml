@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="bogardo_mailgun" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mailgun</label>
+            <tab>service</tab>
+            <resource>Bogardo_Mailgun::config</resource>
+
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>API</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[When enabled, all transactional e-mails are send with the Mailgun API.]]></comment>
+                </field>
+
+                <field id="domain" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Domain</label>
+                </field>
+
+                <field id="private_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Private Key</label>
+                </field>
+
+                <field id="public_key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Public Key</label>
+                </field>
+
+            </group>
+
+            <group id="general" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+
+                <field id="test_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[When enabled, Mailgun will accept the message but will not send it. This is useful for testing purposes. <br/><strong>Note: You are charged for messages sent in test mode.</strong>]]></comment>
+                </field>
+
+                <!-- @TODO -->
+                <!-- Tracking Click -->
+
+                <!-- Tracking Open -->
+
+                <!-- force_from_address -->
+            </group>
+
+            <group id="developer" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Developer</label>
+                <comment><![CDATA[Configuration options for development purposes]]></comment>
+
+                <field id="endpoint" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Endpoint</label>
+                    <source_model>Bogardo\Mailgun\Model\Config\Source\Endpoint</source_model>
+                </field>
+
+                <field id="postbin_key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Postbin Key</label>
+                    <depends>
+                        <field id="*/*/endpoint">bin.mailgun.net</field>
+                    </depends>
+                    <validate>validate-no-empty</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
