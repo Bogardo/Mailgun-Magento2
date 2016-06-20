@@ -30,6 +30,11 @@ You can access the mail logs in your [Mailgun control panel](https://mailgun.com
 
 ## Changelog
 
+#### 0.1.3
+Remove `extra.map` from composer.json.
+Since the 2.0.0-RC version it is no longer needed as modules can now also be loaded from the vendor/ directory and don't need to be copied to the app/code directory.
+([Source](http://magento.stackexchange.com/questions/93502/magento2-custom-module-downloaded-by-composer-at-two-places/93503#93503))
+
 #### 0.1.2
 - Add correct license
 - Add badges to readme

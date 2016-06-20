@@ -24,13 +24,5 @@
         "files": [
             "registration.php"
         ]
-    },
-    "extra": {
-        "map": [
-            [
-                "*",
-                "Bogardo/Mailgun"
-            ]
-        ]
     }
 }
