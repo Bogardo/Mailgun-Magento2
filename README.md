@@ -30,6 +30,9 @@ You can access the mail logs in your [Mailgun control panel](https://mailgun.com
 
 ## Changelog
 
+#### 0.1.4
+Fix version number
+
 #### 0.1.3
 Remove `extra.map` from composer.json.
 Since the 2.0.0-RC version it is no longer needed as modules can now also be loaded from the vendor/ directory and don't need to be copied to the app/code directory.
