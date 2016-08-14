@@ -74,9 +74,7 @@ class MessageParser
                 continue;
             }
 
-            if (in_array($recipient, $all)) {
-                $result[] = trim($recipient);
-            }
+            $result[] = trim($recipient);
         }
 
         return $result;
