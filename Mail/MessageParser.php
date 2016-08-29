@@ -74,7 +74,13 @@ class MessageParser
                 continue;
             }
 
-            if (in_array($recipient, $all)) {
+            if (preg_match('/<(.*)>/', $recipient, $matches)) {
+                $recipientAddress = $matches[1];
+            } else {
+                $recipientAddress = $recipient;
+            }
+
+            if (in_array($recipientAddress, $all)) {
                 $result[] = trim($recipient);
             }
         }
