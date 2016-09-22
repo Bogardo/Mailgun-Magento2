@@ -46,13 +46,33 @@ class MessageParser
             'from' => $this->message->getFrom(),
             'reply-to' => $this->message->getReplyTo(),
             'subject' => $this->message->getSubject(),
-            'to' => $this->parseRecipients('To'),
-            'cc' => $this->parseRecipients('Cc'),
-            'bcc' => $this->parseRecipients('Bcc'),
+            'to' => $this->stringifyRecipients($this->parseRecipients('To')),
+            'cc' => $this->stringifyRecipients($this->parseRecipients('Cc')),
+            'bcc' => $this->stringifyRecipients($this->parseRecipients('Bcc')),
             'html' => $html ?: null,
             'text' => $text ?: null,
             'attachment' => []
         ];
+    }
+
+    /**
+     * Allows for multiple bcc, to,
+     * and cc emails to be sent out
+     * 
+     * @param $addresses
+     *
+     * @return array
+     */
+
+    protected function stringifyRecipients($addresses)
+    {
+        if(sizeof($addresses) > 1) {
+            $addresses = implode(",", $addresses);
+            return array($addresses);
+        }
+        else {
+            return $addresses;
+        }
     }
 
     /**
@@ -74,7 +94,13 @@ class MessageParser
                 continue;
             }
 
-            if (in_array($recipient, $all)) {
+            if (preg_match('/<(.*)>/', $recipient, $matches)){
+                $recipientAddress = $matches[1];
+            } else {
+                $recipientAddress = $recipient;
+            }
+
+            if (in_array($recipientAddress, $all)) {
                 $result[] = trim($recipient);
             }
         }
