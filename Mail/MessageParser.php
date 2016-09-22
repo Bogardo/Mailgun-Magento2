@@ -42,25 +42,34 @@ class MessageParser
         $text = quoted_printable_decode($text);
         $html = quoted_printable_decode($html);
 
-       if(!empty($this->parseRecipients('Bcc'))) {
-           $to = array();
-           $temp = implode(",", array_merge($this->parseRecipients('To'), $this->parseRecipients('Bcc')));
-           array_push($to, $temp);
-        } else {
-           $to = $this->parseRecipients('To');
-        } 
-
         return [
             'from' => $this->message->getFrom(),
             'reply-to' => $this->message->getReplyTo(),
             'subject' => $this->message->getSubject(),
-            'to' => $this->parseRecipients('To'),
-            'cc' => $this->parseRecipients('Cc'),
-            'bcc' => $this->parseRecipients('Bcc'),
+            'to' => $this->stringifyRecipients($this->parseRecipients('To')),
+            'cc' => $this->stringifyRecipients($this->parseRecipients('Cc')),
+            'bcc' => $this->stringifyRecipients($this->parseRecipients('Bcc')),
             'html' => $html ?: null,
             'text' => $text ?: null,
             'attachment' => []
         ];
+    }
+
+    /**
+     * @param $addresses
+     *
+     * @return array
+     */
+
+    protected function stringifyRecipients($addresses)
+    {
+        if(sizeof($addresses) > 1) {
+            $addresses = implode(",", $addresses);
+            return array($addresses);
+        }
+        else {
+            return $addresses;
+        }
     }
 
     /**
