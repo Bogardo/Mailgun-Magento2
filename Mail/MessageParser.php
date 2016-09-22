@@ -56,6 +56,9 @@ class MessageParser
     }
 
     /**
+     * Allows for multiple bcc, to,
+     * and cc emails to be sent out
+     * 
      * @param $addresses
      *
      * @return array
