@@ -42,6 +42,14 @@ class MessageParser
         $text = quoted_printable_decode($text);
         $html = quoted_printable_decode($html);
 
+       if(!empty($this->parseRecipients('Bcc'))) {
+           $to = array();
+           $temp = implode(",", array_merge($this->parseRecipients('To'), $this->parseRecipients('Bcc')));
+           array_push($to, $temp);
+        } else {
+           $to = $this->parseRecipients('To');
+        } 
+
         return [
             'from' => $this->message->getFrom(),
             'reply-to' => $this->message->getReplyTo(),
@@ -74,7 +82,13 @@ class MessageParser
                 continue;
             }
 
-            if (in_array($recipient, $all)) {
+            if (preg_match('/<(.*)>/', $recipient, $matches)){
+                $recipientAddress = $matches[1];
+            } else {
+                $recipientAddress = $recipient;
+            }
+
+            if (in_array($recipientAddress, $all)) {
                 $result[] = trim($recipient);
             }
         }
