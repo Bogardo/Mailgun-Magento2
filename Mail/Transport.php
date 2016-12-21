@@ -55,7 +55,6 @@ class Transport extends MagentoTransport implements TransportInterface
 
             return;
         }
-
         $messageBuilder = $this->createMailgunMessage($this->parseMessage());
 
         $mailgun = new Mailgun($this->config->privateKey(), $this->getHttpClient(), $this->config->endpoint());
@@ -94,16 +93,16 @@ class Transport extends MagentoTransport implements TransportInterface
         $builder = new MessageBuilder();
         $builder->setFromAddress($message['from']);
         $builder->setSubject($message['subject']);
-        foreach ($message['to'] as $to) {
-            $builder->addToRecipient($to);
+        foreach ($message['to'] as $email => $name) {
+            $builder->addToRecipient($email, $name);
         }
 
-        foreach ($message['cc'] as $cc) {
-            $builder->addCcRecipient($cc);
+        foreach ($message['cc'] as $cc => $name) {
+            $builder->addCcRecipient($cc, $name);
         }
 
-        foreach ($message['bcc'] as $bcc) {
-            $builder->addBccRecipient($bcc);
+        foreach ($message['bcc'] as $bcc => $name) {
+            $builder->addBccRecipient($bcc, $name);
         }
 
         if ($message['html']) {

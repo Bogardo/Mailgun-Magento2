@@ -46,9 +46,9 @@ class MessageParser
             'from' => $this->message->getFrom(),
             'reply-to' => $this->message->getReplyTo(),
             'subject' => $this->message->getSubject(),
-            'to' => $this->parseRecipients('To'),
-            'cc' => $this->parseRecipients('Cc'),
-            'bcc' => $this->parseRecipients('Bcc'),
+            'to' => $this->message->getToRecipients(),
+            'cc' => $this->message->getCcRecipients(),
+            'bcc' => $this->message->getBccRecipients(),
             'html' => $html ?: null,
             'text' => $text ?: null,
             'attachment' => []
@@ -65,7 +65,6 @@ class MessageParser
         $all = $this->message->getRecipients();
 
         $headers = $this->message->getHeaders();
-
         $recipients = isset($headers[$type]) ? $headers[$type] : [];
 
         $result = [];
